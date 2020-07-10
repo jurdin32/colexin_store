@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b*$3ks#26-whr*t$%%scwq6uo*)j1ojuapf$6l+e^w($4)ml@x'
@@ -86,6 +88,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DATABASE_OPTIONS = {'charset': 'utf8'}
+DEFAULT_CHARSET = 'utf-8'
 
 LANGUAGE_CODE = 'es-EC'
 
