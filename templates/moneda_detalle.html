@@ -1,0 +1,458 @@
+
+
+{% extends 'base.html' %}
+{% block content%}
+
+    <section class="page-header">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/biblioteca/{{ monedas.periodo.pais.id }}">{{ product.periodo.pais }}</a></li>
+                <li class="active">{{monedas.denominacion}} </li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="product-view">
+                    <div class="product-essential">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10}">
+                                    <div>
+                                        <img alt="" class="img-responsive img-rounded" src="/media/{{ monedas.image_a }}">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10}">
+
+                                    <div>
+                                        <img alt="" class="img-responsive img-rounded" src="/media/{{ monedas.image_b }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-details-box col-sm-6">
+                                <h1 class="product-name">
+                                    {{monedas.denominacion.denominacion}} - {{ monedas.denominacion.metal}}  {{ monedas.anio }}
+                                </h1>
+                                <div class="review-link">
+                                    <a href="#" class="review-link-in" rel="nofollow"> <span class="count"></span>{{ monedas.pais }} | {{ monedas.periodo }} </a>
+                                </div>
+                                <h3 >
+
+                                </h3>
+
+                                <div class="product-rating-container">
+                                    <div class="product-ratings">
+                                        <div class="ratings-box">
+                                            <div class="rating" style="width:60%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="product-short-desc">
+                                    <h4 style="text-align: center">Estado de Conservación</h4>
+
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th style="text-align: center">
+													F
+												</th >
+												<th style="text-align: center">
+													VF
+												</th>
+												<th style="text-align: center">
+													XF
+												</th>
+												<th style="text-align: center">
+													AU
+												</th>
+                                                <th style="text-align: center">
+													BU
+												</th>
+                                                <th style="text-align: center">
+													PROOF
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td style="text-align: center">
+												$.{{ monedas.F }}
+												</td>
+												<td style="text-align: center">
+												$.{{ monedas.VF }}
+												</td>
+												<td style="text-align: center">
+												$.{{ monedas.XF }}
+												</td>
+												<td style="text-align: center">
+												$.{{ monedas.AU }}
+												</td>
+                                                <td style="text-align: center">
+												$.{{ monedas.BU }}
+												</td>
+                                                <td style="text-align: center">
+												$.{{ monedas.PROOF }}
+                                                </td>
+											</tr>
+										</tbody>
+									</table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="tabs product-tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#product-info" data-toggle="tab">Informacion</a>
+                            </li>
+                            <li>
+                                <a href="#product-carac" data-toggle="tab">Caracteristicas Físicas</a>
+                            </li>
+                            <li>
+                                <a href="#product-acuna" data-toggle="tab">Acuñación / Ceca</a>
+                            </li>
+                            <li>
+                                <a href="#product-tirada" data-toggle="tab">Tirada, Valor:</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="product-info" class="tab-pane active">
+                                <div class="product-desc-area">
+                                    <h3 class="text-uppercase heading-text-color font-weight-semibold">INFORMACION</h3>
+                                    <table class="product-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="table-label">Número de Krause:</td>
+                                                    <td>{{ monedas.moneda.n_krause }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="table-label">País:</td>
+                                                    <td>{{ monedas.pais }} |{{ monedas.periodo.periodo }} </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="table-label">Denominación:</td>
+                                                    <td>{{ monedas.denominacion}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="table-label">Año:</td>
+                                                    <td>{{ monedas.anio }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="table-label">Período	:</td>
+                                                    <td>{{ monedas.periodo.anio_inicio }}-{{ monedas.periodo.anio_fin }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="table-label">Tipo de monedas	:</td>
+                                                    <td>{{ monedas.monedas_motivo }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="product-carac" class="tab-pane">
+                                <h3 class="text-uppercase heading-text-color font-weight-semibold">CARACTERISTICAS FISICAS</h3>
+                                <table class="product-table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="table-label">Metal</td>
+                                            <td>{{ monedas.metal }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-label">Forma</td>
+                                            <td>{{ monedas.forma }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-label">Diametro</td>
+                                            <td>{{ monedas.diametro }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-label">Peso</td>
+                                            <td>{{ monedas.peso }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-label">Grosor</td>
+                                            <td>{{ monedas.grosor }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-label">Canto</td>
+                                            <td>{{ monedas.canto }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="product-acuna" class="tab-pane">
+                                <div class="product-tags-area">
+                                    <h3 class="text-uppercase heading-text-color font-weight-semibold">CECA / ACUÑACIÓN</h3>
+                                    <table class="product-table">
+                                        <tbody>
+
+                                            <tr>
+                                                <td class="table-label">Ceca: </td>
+                                                    <td> {{ monedas.ceca }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="table-label">Marca de Ceca:</td>
+                                                    <td>  {{ monedas.marca_ceca }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table-label">Acuñación: </td>
+                                                    <td> {{ monedas.acuniacion }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <h3 class="text-uppercase heading-text-color font-weight-semibold">LEYENDA</h3>
+                                    <table class="product-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="table-label">Anverso:</td>
+                                                    <td>{{ monedas.anverso }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="table-label">Reverso: </td>
+                                                    <td>  {{ monedas.inverso }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="product-tirada" class="tab-pane">
+                                <div class="product-tags-area">
+                                    <h3 class="text-uppercase heading-text-color font-weight-semibold">TIRADA, VALOR</h3>
+                                    <table class="product-table">
+                                        <tbody>
+                                            <tr style="text-align: center">
+                                                <td class="table-label" rowspan="2">Año: </td>
+                                                <td class="table-label" rowspan="2">Denominación</td>
+                                                <td class="table-label" rowspan="2">Ceca - Marca: </td>
+                                                <td class="table-label" colspan="9">Tirada: </td>
+                                            </tr>
+                                            <tr style="text-align: center">
+                                                <td >PROOF</td>
+                                                <td >MS</td>
+                                                <td >UNC</td>
+                                                <td >XF</td>
+                                                <td >VF</td>
+                                                <td >F</td>
+                                                <td >VG</td>
+                                                <td >G</td>
+                                                <td >P</td>
+                                            </tr>
+                                                <h2>hola</h2>
+
+                                                {% for sis in sistema %}
+                                                    <tr style="text-align: center">
+                                                        <td>{{sis.anio}}</td>
+                                                        <td>{{sis.denomina.denominacion}}</td>
+                                                        <td>{{sis.ceca}}</td>
+                                                        <td>{{sis.PROOF}}</td>
+                                                        <td>{{sis.MS}}</td>
+                                                        <td>{{sis.UNC}}</td>
+                                                        <td>{{sis.XF}}</td>
+                                                        <td>{{sis.VF}}</td>
+                                                        <td>{{sis.F}}</td>
+                                                        <td>{{sis.VG}}</td>
+                                                        <td>{{sis.G}}</td>
+                                                        <td>{{sis.P}}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="col-md-3 sidebar product-sidebar">
+
+
+
+                <h4 style="text-align: center">Sistema Monetario</h4>
+                <h5>{{monedas.periodo}}</h5>
+
+                <div class="feature-box feature-box-style-3">
+
+                    <div class="col-md-7">
+
+                        {% for sis in sistema %}
+                            <h6>{{sis.denomina.denominacion}}</h6>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <hr class="mt-xlg">
+
+                <div class="owl-carousel owl-theme" data-plugin-options="{'items':1, 'margin': 5}">
+                    <a href="#">
+                        <img class="img-responsive" src="/static/img/demos/shop/banners/banner1-blue.jpg" alt="Banner">
+                    </a>
+                    <a href="#">
+                        <img class="img-responsive" src="/static/img/demos/shop/banners/banner2-blue.jpg" alt="Banner">
+                    </a>
+                </div>
+
+                <hr class="mb-xlg">
+
+                <h4>Related Products</h4>
+                <p>Check items to add to the cart or <a href="#">Select all</a></p>
+                <div class="owl-carousel owl-theme" data-plugin-options="{'items':1, 'margin': 5, 'dots': false, 'nav': true}">
+                    <div>
+                        <div class="product product-sm">
+                            <figure class="product-image-area">
+                                <a href="#" title="Product Name" class="product-image">
+                                    <img src="/static/img/demos/shop/products/product1.jpg" alt="Product Name">
+                                    <img src="/static/img/demos/shop/products/product1-2.jpg" alt="Product Name" class="product-hover-image">
+                                </a>
+                            </figure>
+                            <div class="product-details-area">
+                                <h2 class="product-name"><a href="#" title="Product Name">Noa Sheer Blouse - Black</a></h2>
+                                <div class="product-ratings">
+                                    <div class="ratings-box">
+                                        <div class="rating" style="width:0%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="product-price-box">
+                                    <span class="product-price">$220.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product product-sm">
+                            <figure class="product-image-area">
+                                <a href="#" title="Product Name" class="product-image">
+                                    <img src="/static/img/demos/shop/products/product2.jpg" alt="Product Name">
+                                </a>
+                            </figure>
+                            <div class="product-details-area">
+                                <h2 class="product-name"><a href="#" title="Product Name">Noa Sheer Blouse</a></h2>
+                                <div class="product-ratings">
+                                    <div class="ratings-box">
+                                        <div class="rating" style="width:80%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="product-price-box">
+                                    <span class="product-price">$180.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product product-sm">
+                            <figure class="product-image-area">
+                                <a href="#" title="Product Name" class="product-image">
+                                    <img src="/static/img/demos/shop/products/product3.jpg" alt="Product Name">
+                                </a>
+                            </figure>
+                            <div class="product-details-area">
+                                <h2 class="product-name"><a href="#" title="Product Name">Sherry Color Shirt</a></h2>
+                                <div class="product-ratings">
+                                    <div class="ratings-box">
+                                        <div class="rating" style="width:0%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="product-price-box">
+                                    <span class="product-price">$240.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="product product-sm">
+                            <figure class="product-image-area">
+                                <a href="#" title="Product Name" class="product-image">
+                                    <img src="/static/img/demos/shop/products/product4.jpg" alt="Product Name">
+                                </a>
+                            </figure>
+                            <div class="product-details-area">
+                                <h2 class="product-name"><a href="#" title="Product Name">Noa Sheer Blouse - Pink</a></h2>
+                                <div class="product-ratings">
+                                    <div class="ratings-box">
+                                        <div class="rating" style="width:60%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="product-price-box">
+                                    <span class="product-price">$220.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product product-sm">
+                            <figure class="product-image-area">
+                                <a href="#" title="Product Name" class="product-image">
+                                    <img src="/static/img/demos/shop/products/product5.jpg" alt="Product Name">
+                                </a>
+                            </figure>
+                            <div class="product-details-area">
+                                <h2 class="product-name"><a href="#" title="Product Name">Denim Blue Jeans</a></h2>
+                                <div class="product-ratings">
+                                    <div class="ratings-box">
+                                        <div class="rating" style="width:0%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="product-price-box">
+                                    <span class="product-price">$180.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product product-sm">
+                            <figure class="product-image-area">
+                                <a href="#" title="Product Name" class="product-image">
+                                    <img src="/static/img/demos/shop/products/product6.jpg" alt="Product Name">
+                                </a>
+                            </figure>
+                            <div class="product-details-area">
+                                <h2 class="product-name"><a href="#" title="Product Name">Deiss Blue Skirt</a></h2>
+                                <div class="product-ratings">
+                                    <div class="ratings-box">
+                                        <div class="rating" style="width:80%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="product-price-box">
+                                    <span class="product-price">$240.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

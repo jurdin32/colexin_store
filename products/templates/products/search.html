@@ -1,0 +1,20 @@
+{%  extends 'base.html' %}}
+{% block content %}
+    <!-- sidebar -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-push-3">
+                <br>
+                <h1 style="text-align: center">Resultado de la Busqueda</h1>
+                <p style="text-align: center">Resutados para: {{ query }} ({{ count }})</p>
+{#                <ul class="products-grid columns4">#}
+{#                    <li>#}
+                        {% include 'products/snippets/list.html' %}
+{#                    </li>#}
+{#                </ul>#}
+            </div>
+            {% include 'products/filtro.html' %}
+        </div>
+    </div>
+<!--end  sidebar -->
+{% endblock %}

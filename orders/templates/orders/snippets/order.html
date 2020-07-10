@@ -1,0 +1,52 @@
+{% load product_extras %}
+
+
+<table class="table">
+    <thead>
+        <tr class="success">
+            <th>Pedido realizado</th>
+            <th>Total</th>
+            <th>Envíado a:</th>
+            <th>Código Postal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="active">
+
+            <td class="product-action-td">
+                {{ order.created_at }}
+            </td>
+            <td class="product-image-td">
+                {{ order.total | price_format }}
+            </td>
+            <td class="product-name-td">
+                {{ order.shipping_address.ciudad }} - {{ order.shipping_address.line1 }} y {{ order.shipping_address.line2 }}
+            </td>
+            <td>
+                {{ order.shipping_address }}
+            </td>
+        </tr>
+        {% for cp in order.cart.products_releated %}
+            {% with product=cp.product %}
+                <tr class="">
+                    <td class="product-image-td">
+                        <a href="{% url 'product' product.slug %}" title="Product Name">
+                            <img src="{{ product.image_a.url }}" alt="Imagen del producto" width="50" height="50" >
+                        </a>
+                    </td>
+                    <td class="product-name-td">
+                        <p class="product-name" title="Nombre del Producto">{{ product.title }}</p>
+
+                    </td>
+                    <td>
+                        <p>Cantidad  {{ cp.quantity }} </p>
+
+
+                    <td>
+                        {{ order.shipping_address }}
+                    </td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+    </tbody>
+</table>

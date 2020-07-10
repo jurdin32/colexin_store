@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="form-section register-form">
+        <div class="container">
+            <h1 class="h2 heading-primary font-weight-normal mb-md mt-xlg">Crea una cuenta</h1>
+            <div class="featured-box featured-box-primary featured-box-flat featured-box-text-left mt-md">
+                <div class="box-content">
+                    <form method="post">
+                        {% csrf_token %}
+                        <h4 class="heading-primary text-uppercase mb-lg">INFORMACIÓN PERSONAL</h4>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <div class=" font-weight-normal ">
+                                        {{ form.username.label_tag }}
+                                        {{ form.username }}
+
+                                        {% if form.errors %}
+                                            {{ form.username.errors }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    {{ form.email.label_tag }}
+                                    {{ form.email }}
+                                    {% if form.errors %}
+                                        {{ form.email.errors }}
+                                    {% endif %}
+                                </div>
+
+                                <h4 class="heading-primary text-uppercase mb-lg">CONTRASEÑA</h4>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {{ form.password.label_tag }}
+                                    {{ form.password }}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {{ form.password2.label_tag }}
+                                    {{ form.password2 }}
+
+                                    {% if form.password2 %}
+                                        {{ form.password2.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p class="required mt-lg mb-none">* Campos requeridos</p>
+                                <div class="form-action clearfix mt-none">
+                                    <input type="submit" class="btn btn-primary" value="Registrarse">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+

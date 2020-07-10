@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load product_extras %}
+
+    <section class="page-header">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Inicio</a></li>
+                <li class="active"><a href="/biblioteca/">Biblioteca</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-9 col-md-push-3">
+                <div class="toolbar mb-none">
+                    <div class="sorter">
+                        <div class="sort-by">
+                            <label>Ubicación:</label>
+                            <select>
+                                <option value="Position">Guayaquil</option>
+                                <option value="Name">Machala</option>
+                                <option value="Price">Quito</option>
+                            </select>
+                            <a href="#" title="Set Desc Direction">
+                                <img src="/static/img/demos/shop/i_asc_arrow.gif" alt="Set Desc Direction">
+                            </a>
+                        </div>
+
+                        <div class="view-mode">
+                            <span title="Grid">
+                                <i class="fa fa-th"></i>
+                            </span>
+                            <a href="#" title="List">
+                                <i class="fa fa-list-ul"></i>
+                            </a>
+                        </div>
+
+                        <ul class="pagination">
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+                        </ul>
+
+                        <div class="limiter">
+                            <label>Show:</label>
+                            <select>
+                                <option value="12">12</option>
+                                <option value="24">24</option>
+                                <option value="36">36</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <ul class="products-grid columns4">
+
+                    {% for pro in products %}
+                        {% if pro.tipo == 'Moneda' %}
+                            <li>
+                                <div class="product">
+                                    <figure class="product-image-area">
+                                        <a href="{% url 'product' pro.slug %}" title="Product Name" class="product-image">
+                                            <img src="/media/{{ pro.image_a }}" alt="Product Name">
+                                            <img src="/media/{{ pro.image_b }}" alt="Product Name"
+                                                 class="product-hover-image">
+                                        </a>
+                                    </figure>
+                                    <div class="product-details-area">
+                                        <h2 class="product-name"><a href="{% url 'product' pro.slug %}"
+                                                                    title="Product Name">{{ pro.title }}</a></h2>
+                                        <div class="product-ratings">
+                                            <div class="ratings-box">
+                                                <div class="rating" style="width:60%"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="product-price-box">
+{#                                            <span class="old-price"></span>#}
+                                            <span class="product-price">{{ pro.precio | price_format  }}</span>
+                                        </div>
+
+                                        <div class="product-actions">
+
+                                            <a href="{% url 'product' pro.slug %}" class="addtocart" title="Leer mas!">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                <span>Leer mas!</span>
+                                            </a>
+                                            <a href="#" class="addtowishlist" title="Add to Wishlist">
+                                                <i class="fa fa-heart"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <aside class="col-md-3 col-md-pull-9 sidebar shop-sidebar">
+                <div class="panel-group">
+
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#Ecuador">
+                                        Ecuador
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="Ecuador" class="accordion-body collapse  ">
+                                <div class="panel-body">
+                                    <ul>
+{#                                        {% for pai in pais %}#}
+{#                                            {% if pai.continente == conti %}#}
+                                                <div class="toggle toggle-primary toggle-simple" data-plugin-toggle>
+                                                    <section class="toggle ">
+                                                        <label><a href="/biblioteca/ss/"> Guayas </a></label>
+                                                        <div class="toggle-content">
+                                                            <div class="toggle-content">
+{#                                                                {% for peri in periodo %}#}
+{#                                                                    {% if peri.pais == pai %}#}
+                                                                        <li><a  href="/periodo/">
+                                                                            <h8 style="padding-left: 30px">Guayaquil</h8>
+                                                                        </a>
+                                                                        </li>
+
+                                                                        <li><a  href="/periodo/">
+                                                                            <h8 style="padding-left: 30px">Samborondon</h8>
+                                                                        </a>
+                                                                        </li>
+{#                                                                    {% endif %}#}
+{#                                                                {% endfor %}#}
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+{#                                            {% endif %}#}
+{#                                        {% endfor %}#}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-category">
+                                    Motivo
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="panel-filter-category" class="accordion-body collapse in">
+                            <div class="panel-body">
+                                <div id="product1">
+                                    <input type="checkbox" value="1" id="product-1-1" name="check" /> Circulación<br/>
+                                    <input type="checkbox" value="2" id="product-1-2" name="check" /> Colección<br/>
+                                    <input type="checkbox" value="3" id="product-1-3" name="check" /> Conmemorativa<br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-category">
+                                    Motivo
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="panel-filter-category" class="accordion-body collapse in">
+                            <div class="panel-body">
+                                <div id="product1">
+                                    <input type="checkbox" value="1" id="product-1-1" name="check" /> Circulación<br/>
+                                    <input type="checkbox" value="2" id="product-1-2" name="check" /> Colección<br/>
+                                    <input type="checkbox" value="3" id="product-1-3" name="check" /> Conmemorativa<br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-category">
+                                    Condición
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="panel-filter-category" class="accordion-body collapse in">
+                            <div class="panel-body">
+                                <div id="product1">
+                                    <input type="checkbox" value="1" id="product-1-1" name="check" /> PROFF <br/>
+                                    <input type="checkbox" value="2" id="product-1-2" name="check" /> MS<br/>
+                                    <input type="checkbox" value="3" id="product-1-3" name="check" /> UNC<br/>
+                                    <input type="checkbox" value="3" id="product-1-3" name="check" /> XF<br/>
+                                    <input type="checkbox" value="3" id="product-1-3" name="check" /> VF<br/>
+                                    <input type="checkbox" value="3" id="product-1-3" name="check" /> F<br/>
+                                    <input type="checkbox" value="3" id="product-1-3" name="check" /> VG<br/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-group-secondary ">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle  " data-toggle="collapse" href="#panel-filter-category">
+                                    Metal
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="panel-filter-category" class="accordion-body collapse in">
+                            <div class="panel-body">
+                                <div id="product1">
+                                    <input type="checkbox" value="1" id="product-1-1" name="check" /> Oro <br/>
+                                    <input type="checkbox" value="2" id="product-1-2" name="check" /> Plata <br/>
+                                    <input type="checkbox" value="3" id="product-1-3" name="check" /> Bronce <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" href="#panel-filter-price">
+                                    Price
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="panel-filter-price" class="accordion-body collapse in">
+                            <div class="panel-body">
+                                <div class="filter-price">
+                                    <div id="price-slider" class="noUi-target noUi-ltr noUi-horizontal"><div class="noUi-base"><div class="noUi-origin" style="left: 16.6667%;"><div class="noUi-handle noUi-handle-lower" data-handle="0" style="z-index: 5;"></div></div><div class="noUi-connect" style="left: 16.6667%; right: 16.6667%;"></div><div class="noUi-origin" style="left: 83.3333%;"><div class="noUi-handle noUi-handle-upper" data-handle="1" style="z-index: 4;"></div></div></div></div>
+                                    <div class="filter-price-details">
+                                        <span>from</span>
+                                        <input type="text" id="price-range-low" class="form-control" placeholder="Min">
+                                        <span>to</span>
+                                        <input type="text" id="price-range-high" class="form-control" placeholder="Max">
+                                        <a href="#" class="btn btn-primary">FILTER</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+
+{% endblock %}

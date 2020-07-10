@@ -1,0 +1,35 @@
+{% load product_extras %}
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" href="#panel-cart-total">
+                    RESUMEN DE PEDIDO
+                </a>
+            </h4>
+        </div>
+        <div id="panel-cart-total" class="accordion-body collapse in">
+            <div class="panel-body">
+                <table class="totals-table">
+                    <tbody>
+                        <tr>
+                            <td>Productos </td>
+                            <td>{{ cart.total  | price_format  }}</td>
+                        </tr>
+                        <tr>
+                            <td>Envío</td>
+                            <td >{{order.total_envio | price_format }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="solid tall">
+                <div class="totals-table-action">
+                    <a href="#" class="btn btn-link btn-block" id="order-total">Total (Impuestos Incluidos) {{ order.total | price_format }}</a>
+                </div>
+                <div class="totals-table-action">
+                    <a href="{{ next_url }}" class="btn btn-warning btn-block">Confirmar Pedido</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+
+            <div class="panel-box">
+                <div class="panel-box-title">
+                    <h3>DIRECCIÓN</h3>
+                </div>
+
+                <div class="panel-box-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="h5 heading-text-color font-weight-semibold mb-xs">{{ shipping_address.pais }}&nbsp; - &nbsp;{{ shipping_address.ciudad }}</h4>
+                            <address>
+                                {{ shipping_address.line1 }} y {{ shipping_address.line2 }}<br>
+                            </address>
+                            <address>
+                                {{ shipping_address.referencia }}<br>
+                            </address>
+                            <div class="card-title">
+                                {{ shipping_address.codigo_postal }}
+                            </div>
+                            <br>
+                            {% if edit %}
+                                <a href="{% url 'shipping_addresses:update' shipping_address.pk %}" class="btn btn-info" style="color: #ffffff">Editar</a>
+                                {% if shipping_address.default %}
+                                    <div class="text-info">
+                                        Dirección Principal
+                                    </div>
+                                {% else %}
+                                    <a href="{% url 'shipping_addresses:default' shipping_address.pk %}" class="btn btn-warning" style="color: #ffffff">Default</a>
+                                    <a href="{% url 'shipping_addresses:delete' shipping_address.pk %}" class="btn btn-danger" style="color: #ffffff">Eliminar</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,284 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Colexin</title>
+
+    <meta name="keywords" content="HTML5 Template"/>
+    <meta name="description" content="Colexin">
+    <meta name="author" content="okler.net">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light"
+          rel="stylesheet" type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="/static/vendor/simple-line-icons/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/vendor/owl.carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/vendor/owl.carousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/static/vendor/magnific-popup/magnific-popup.min.css">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/static/css/theme.css">
+    <link rel="stylesheet" href="/static/css/theme-elements.css">
+    <link rel="stylesheet" href="/static/css/theme-blog.css">
+    <link rel="stylesheet" href="/static/css/theme-shop.css">
+
+    <!-- Current Page CSS -->
+    <link rel="stylesheet" href="/static/vendor/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="/static/vendor/rs-plugin/css/layers.css">
+    <link rel="stylesheet" href="/static/vendor/rs-plugin/css/navigation.css">
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="/static/css/skins/skin-shop-8.css">
+
+    <!-- Demo CSS -->
+    <link rel="stylesheet" href="/static/css/demos/demo-shop-8.css">
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+    <!-- Head Libs -->
+    <script src="/static/vendor/modernizr/modernizr.min.js"></script>
+
+    {% if stripe_public_key %}
+        <meta name="stripe_public_key" content="{{  stripe_public_key }}">
+    {% endif %}
+
+    {% block css %}
+    {% endblock %}
+
+</head>
+<body>
+
+    <div class="body">
+        {% include 'users/navbar.html' %}
+        <div id="mobile-menu-overlay"></div>
+
+        <div role="main" class="main">
+
+            {% block breadcrumb %}
+
+            {% endblock %}
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {% if message.tags == 'success'%} alert-success{%else%}alert-danger{% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">X</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
+            {% block content %}
+
+
+
+            {% endblock %}
+
+
+            <footer id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-ribbon">
+                            <span>Ponerse en contacto</span>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h4>Mi cuenta</h4>
+                            <ul class="links">
+                                <li>
+                                    <i class="fa fa-caret-right text-color-primary"></i>
+                                    <a href="demo-shop-8-about-us.html">Sobre nosotros</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-caret-right text-color-primary"></i>
+                                    <a href="demo-shop-8-contact-us.html">Contáctenos</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-caret-right text-color-primary"></i>
+                                    <a href="demo-shop-8-myaccount.html"> Mi cuenta</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-caret-right text-color-primary"></i>
+                                    <a href="#">Historial de pedidos</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-caret-right text-color-primary"></i>
+                                    <a href="#">Búsqueda Avanzada</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="contact-details">
+                                <h4>Información del contacto</h4>
+                                <ul class="contact">
+                                    <li><p><i class="fa fa-map-marker"></i>
+                                        <strong>Dirección:</strong><br> {{ contacto.direccion }}</p></li>
+                                    <li><p><i class="fa fa-phone"></i>
+                                        <strong>Teléfono:</strong><br> {{ contacto.telefono }}</p></li>
+                                    <li><p><i class="fa fa-envelope-o"></i> <strong>Email:</strong><br> <a
+                                            href="mailto:mail@example.com">{{ contacto.email }}</a></p></li>
+                                    <li><p><i class="fa fa-clock-o"></i> <strong>Días laborables /
+                                        Horario:</strong><br> {{ contacto.horario_laboral }}</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Principales características</h4>
+                            <ul class="features">
+                                <li>
+                                    <i class="fa fa-check text-color-primary"></i>
+                                    <a href="#">Super Fast Template</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-check text-color-primary"></i>
+                                    <a href="#">1st Seller Template</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-check text-color-primary"></i>
+                                    <a href="#">19 Unique Shop Layouts</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-check text-color-primary"></i>
+                                    <a href="#">Powerful Template Features</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-check text-color-primary"></i>
+                                    <a href="#">Mobile &amp; Retina Optimized</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="newsletter">
+                                <h4>Se el primero en saberlo</h4>
+                                <p class="newsletter-info">Obtenga toda la información más reciente sobre eventos, ventas y
+                                    ofertas. Regístrese para recibir el boletín hoy.</p>
+
+                                <div class="alert alert-success hidden" id="newsletterSuccess">
+                                    <strong>Success!</strong> Ingrese su dirección de correo electrónico:
+
+                                </div>
+
+                                <div class="alert alert-danger hidden" id="newsletterError"></div>
+
+
+                                <p>Dirección de correo electrónico</p>
+                                <form id="newsletterForm" action="/static/php/newsletter-subscribe.php" method="POST">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="Email Address" name="newsletterEmail"
+                                               id="newsletterEmail" type="text">
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit">Enviar</button>
+                                            </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <div class="container">
+                        <a href="index.html" class="logo">
+                            <img alt="Colexin" class="img-responsive" width="165" height="51"
+                                 src="/media/{{ colexin.logo_blanco }}">
+                        </a>
+                        <ul class="social-icons">
+                            <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank"
+                                                                 title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank"
+                                                                title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank"
+                                                                 title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                        <img alt="Payments" src="/static/img/demos/shop/payments.png" class="footer-payment">
+                        <p class="copyright-text">© Copyright 2017. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Vendor -->
+        <script src="/static/vendor/jquery/jquery.min.js"></script>
+        <script src="/static/vendor/jquery.appear/jquery.appear.min.js"></script>
+        <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+        <script src="/static/vendor/jquery-cookie/jquery-cookie.min.js"></script>
+        <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/static/vendor/common/common.min.js"></script>
+        <script src="/static/vendor/jquery.validation/jquery.validation.min.js"></script>
+        <script src="/static/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+        <script src="/static/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+        <script src="/static/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+        <script src="/static/vendor/isotope/jquery.isotope.min.js"></script>
+        <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+        <script src="/static/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+        <script src="/static/vendor/vide/vide.min.js"></script>
+
+        <!-- Theme Base, Components and Settings -->
+        <script src="/static/js/theme.js"></script>
+
+
+        <script src="/static/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+        <script src="/static/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+        <!-- Current Page Vendor and Views -->
+        <script src="/static/js/views/view.contact.js"></script>
+
+
+        <!-- Demo -->
+        <script src="/static/js/demos/demo-shop-8.js"></script>
+
+        <!-- Theme Custom -->
+        <script src="/static/js/custom.js"></script>
+
+        <!-- Theme Initialization Files -->
+        <script src="/static/js/theme.init.js"></script>
+
+        {% block javascript %}
+        {% endblock %}
+
+
+        <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-12345678-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+         -->
+    </div>
+</body>
+</html>
+
+
+{# <div class="body">#}
+{#            {% include 'users/navbar.html' %}#}
+{#			<div role="main" class="main">#}
+{#                {% include 'messages.html' %}#}
+{#            <div id="mobile-menu-overlay"></div>#}
+{##}
+{#			<div role="main" class="main">#}
+{#                <div class="container">#}
+{#                    {% block content %}#}
+{##}
+{##}
+{#                    {% endblock %}#}

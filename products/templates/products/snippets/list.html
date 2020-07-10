@@ -1,0 +1,54 @@
+{% for object in product_list %}
+{#     {% include 'products/snippets/product.html' with product=object %}#}
+    <ul class="products-list">
+        <li>
+            <div class="product product-list ">
+                <div class="col-md-3">
+                    <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10}">
+                        <div>
+                            <img alt="" class="img-responsive img-rounded" src="{{object.image_a.url}}">
+                        </div>
+                        <div>
+                            <img alt="" class="img-responsive img-rounded" src="{{object.image_b.url}}">
+                        </div>
+                    </div>
+                </div>
+
+{#                <figure class="product-image-area">#}
+{#                    <a href="{% url 'product' object.slug %}" title="Product Name" class="product-image">#}
+{#                        <img src="{{ object.image_a.url }}" alt="Product Name">#}
+{#                        <img src="{{ object.image_b.url }}" alt="Product Name" class="product-hover-image">#}
+{#                    </a>#}
+{#                    <div class="product-label"><span class="discount">-10%</span></div>#}
+{#                    <div class="product-label"><span class="new">New</span></div>#}
+{#                </figure>#}
+
+                    <div class="col-md-9">
+                        <h2 class="product-name"><a href="{% url 'product' object.slug %}" title="Product Name">{{ object.title }}</a></h2>
+                        <div class="product-ratings">
+                            <div class="ratings-box">
+                                <div class="rating" style="width:60%"></div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: justify" class="product-short-desc">
+                            {{ object.descripcion }}
+                        </div>
+
+                        <div class="product-price-box">
+                            <span class="old-price">${{ object.precio }}</span>
+                            <span class="product-price">${{ object.precio_oferta }}</span>
+                        </div>
+
+                        <div class="product-actions">
+                            <a href="{% url 'product' object.slug %}" class="addtocart" title="Add to Cart">
+
+                                <span>Leer mas!</span>
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </li>
+    </ul>
+    <hr>
+{% endfor %}

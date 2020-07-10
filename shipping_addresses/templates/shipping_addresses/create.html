@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="cart">
+        <div class="container">
+            <div class="row">
+                <div role="main" class="main">
+                    <br>
+                    <div class="col-md-9 col-md-push-3 my-account">
+                        {% include 'shipping_addresses/snippets/form.html' with message='Actualizar' %}
+                    </div>
+                    {% include 'orders/snippets/menu_cuenta.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

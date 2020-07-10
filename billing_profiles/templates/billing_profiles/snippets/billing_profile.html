@@ -1,0 +1,26 @@
+<div class="cart-table-wrap">
+    <table class="cart-table">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fa fa-credit-card-alt" style="color:#1a7197"></i>
+                    {{ billing_profile.brand }}
+                </h5>
+                <h6 class="card-subtitle">
+                    Usuario: {{ billing_profile.user }}
+                </h6>
+                <h6 class="card-subtitle">
+                    Terminación: {{ billing_profile.last4 }}
+                </h6>
+
+                <div class="mt-2 text-info">
+                    {%  if billing_profile.default %}
+                        Dirección principal
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </table>
+</div>
+
+

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    {% include 'orders/snippets/breadcrumb.html' %}
+{% endblock %}
+{% block content %}
+    <div class="cart">
+        <div class="container">
+            <div class="row">
+                <div role="main" class="main">
+                    <div class="col-md-8 col-lg-9">
+                        <div class="h2 heading-primary mt-lg clearfix">
+                            Confirma tu pedido
+                        </div>
+                        <div class="cart-table-wrap" style="margin-top: -10px">
+                            <table class="cart-table">
+                                <div class="col-md-5">
+                                    <h3>
+                                        <strong>Dirección de envío</strong>
+                                    </h3>
+                                    <div class="cart-text">
+                                        {{ shipping_address.ciudad }} - {{ shipping_address.estado }}
+                                        - {{ shipping_address.pais }}
+                                    </div>
+                                    <div class="cart-text">
+                                        {{ shipping_address.line1 }}
+                                    </div>
+                                    <div class="cart-text">
+                                        {{ shipping_address.line2 }}
+                                    </div>
+                                    <div class="cart-text">
+                                        {{ shipping_address.referencia }}
+                                    </div>
+                                    <div class="cart-text">
+                                        {{ shipping_address.codigo_postal }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3>
+                                        <strong>Método de pago</strong>
+                                    </h3>
+                                    <div class="cart-text">
+                                        <p>Trajeta terminación {{ order.billing_profile.last4 }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3>
+                                        <strong>Código promocional</strong>
+                                    </h3>
+                                    <form id="promocode-form" action="{% url 'promo_codes:validate' %}">
+                                        <input type="text" name="code" value="{{ order.promo_code.code }}"
+                                               class="form-control" placeholder="código de promoción"
+                                                {% if order.promo_code %} readonly {% endif %}>
+                                    </form>
+
+                                    <div class="text-success" id="promocode-success" style="font-size: 14px">
+                                        {% if order.promo_code %}
+                                            Código aplicado exitosamente
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </table>
+                        </div>
+                        <div class="cart-table-wrap" style="margin-top: -25px">
+                            <table class="cart-table" style="margin-top: -5px">
+                                {% for product in cart.products.all %}
+                                    {% include 'orders/snippets/product.html' %}
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                    <aside class="col-md-4 col-lg-3 sidebar shop-sidebar">
+                        {% url 'orders:complete' as next_url %}
+                        {% include 'orders/snippets/resume.html' with next_url=next_url %}
+                        <div class="totals-table-action">
+                            <a href="{% url  'orders:cancel' %}" class="btn btn-primary btn-block">Cancelar Orden</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        const form = document.getElementById('promocode-form')
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+
+            const input = this.code
+            const code = input.value
+            const url = this.action + "?code=" + code
+            const div_total = document.getElementById('order-total')
+            const div_success = document.getElementById('promocode-success')
+
+            fetch(url)
+                .then(response => response.json())
+                .then(response => {
+
+                    if (response.status === true) {
+                        //Success
+                        div_total.innerHTML = "$" + response.total
+
+                        div_success.classList.remove('text-danger')
+                        div_success.classList.add('text-success')
+
+                        div_success.innerHTML = 'Código aplicado exitosamente'
+
+                        input.readOnly = true
+
+                    } else {
+                        div_success.innerHTML = 'Código no valido'
+                        div_success.classList.remove('text-success')
+                        div_success.classList.add('text-danger')
+                    }
+
+                })
+        })
+    </script>
+
+{% endblock %}

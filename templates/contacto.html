@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div role="main" class="main">
+
+
+        <div class="container">
+
+            <div class="row">
+                <br>
+                <div class="col-md-6">
+
+
+                    <div class="alert alert-success hidden mt-lg" id="contactSuccess">
+                        <strong>Success!</strong> Your message has been sent to us.
+                    </div>
+
+                    <div class="alert alert-danger hidden mt-lg" id="contactError">
+                        <strong>Error!</strong> There was an error sending your message.
+                        <span class="font-size-xs mt-sm display-block" id="mailErrorMessage"></span>
+                    </div>
+
+                    <h2 class="mb-sm mt-sm"><strong>Contacte con</strong> Nosotros</h2>
+                    <form id="contactForm" action="php/contact-form.php" method="POST">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>Tu nombre *</label>
+                                    <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Tu correo electrónico *</label>
+                                    <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label>Tema</label>
+                                    <input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label>Mensaje *</label>
+                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="message" id="message" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="submit" value="Send Message" class="btn btn-primary btn-lg mb-xlg" data-loading-text="Loading...">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+
+                    <h4 class="heading-primary mt-lg">Ponerse en <strong> contacto</strong></h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+                    <hr>
+
+                    <h4 class="heading-primary"><strong>Redes Sociales</strong></h4>
+                    <ul class="list list-icons list-icons-style-3 mt-xlg">
+                        <li><i  class="fa fa-facebook"></i><a href="https://www.facebook.com/{{ redes.facebook }}"> {{ redes.facebook }}</a> </li>
+                        <li><i class="fa fa-instagram"></i> <a href="https://www.instagram.com/{{ redes.instagram }}">{{ redes.instagram }}</a> </li>
+                        <li><i class="fa fa-youtube"></i> <a href="https://www.youtube.com/{{ redes.youtube }}" > {{ redes.youtube }} </a></li>
+                    </ul>
+
+                    <hr>
+                    <h4 class="heading-primary"><strong>Oficina</strong></h4>
+                    <ul class="list list-icons list-icons-style-3 mt-xlg">
+                        <li><i class="fa fa-map-marker"></i> <strong>Dirección:</strong> {{ contacto.direccion }}</li>
+                        <li><i class="fa fa-phone"></i> <strong>Teléfono:</strong> (123) 456-789</li>
+                        <li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:colexin.la.com">{{ contacto.correo }}</a></li>
+                    </ul>
+
+                    <hr>
+
+                    <h4 class="heading-primary">Business <strong>Hours</strong></h4>
+                    <ul class="list list-icons list-dark mt-xlg">
+                        <li><i class="fa fa-clock-o"></i> Monday - Friday - 9am to 5pm</li>
+                        <li><i class="fa fa-clock-o"></i> Saturday - 9am to 2pm</li>
+                        <li><i class="fa fa-clock-o"></i> Sunday - Closed</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
+        <div id="googlemaps" class="google-map"></div>
+
+    </div>
+
+
+{% endblock %}

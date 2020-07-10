@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+    {% include 'orders/snippets/breadcrumb.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="cart">
+        <div class="container">
+            <div class="h2 heading-primary mt-lg clearfix">
+                Métodos de pagos
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-9">
+                   {% include 'billing_profiles/snippets/billing_profile.html' %}
+                </div>
+                <aside class="col-md-4 col-lg-3 sidebar shop-sidebar">
+                    {% url 'orders:confirm' as next_url %}
+{#                    {% include 'orders/snippets/resume.html'  %}#}
+
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#panel-cart-total">
+                                        CONFIRME SU TARJETA
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="panel-cart-total" class="accordion-body collapse in">
+                                <div class="panel-body">
+                                    <table class="totals-table">
+
+                                    </table>
+
+                                    <div class="totals-table-action" style="text-align: center ">
+                                        <a href="{{ next_url }}" class="btn btn-warning"> Confirmar </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+
+
+{##}
+{#    <div class="container">#}
+{#        <div role="main" class="main">#}
+{#            <div class="col-md-9 col-md-push-3 my-account">#}
+{#                <div class="h2 heading-primary mt-lg clearfix">#}
+{#                    Métodos de pagos#}
+{##}
+{#                    <div class="">#}
+{#                        {% include 'billing_profiles/snippets/billing_profile.html' %}#}
+{#                    </div>#}
+{#                    <div class="mt-2">#}
+{#                        <a href="{% url 'orders:confirm' %}" class="btn btn-warning"> Confirmar</a>#}
+{#                        <a href="{% url 'billing_profiles:create' %}" class="btn btn-warning"> Agregar nueva tarjeta</a>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}

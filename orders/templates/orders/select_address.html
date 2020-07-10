@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+    {% include 'orders/snippets/breadcrumb.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="h2 heading-primary mt-lg clearfix">
+            Seleccione una dirección de envío
+        </div>
+        {% for shipping_address in shipping_addresses %}
+            <br>
+            <div class="cart-table-wrap" style="margin-top: -25px">
+                <table class="cart-table" style="margin-top: -5px">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ shipping_address.ciudad }} - {{ shipping_address.estado }}
+                                - {{ shipping_address.pais }}</h5>
+                            <p class="card-title">{{ shipping_address.referencia }}</p>
+                            <p class="card-title">{{ shipping_address.codigo_postal }}</p>
+                            <a href="{% url 'orders:check_address' shipping_address.pk %}" class="btn btn-warning">
+                                Seleccionar
+                            </a>
+                        </div>
+                    </div>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

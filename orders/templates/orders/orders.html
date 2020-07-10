@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="cart">
+        <div class="container">
+            <div class="row">
+                <div role="main" class="main">
+                    <br>
+                    <br>
+                    <div class="col-md-9 col-md-push-3 my-account form-section">
+                        <h1 class="h2 heading-primary font-weight-normal">Mis pedidos</h1>
+                        {% for order in object_list %}
+                            {% include 'orders/snippets/order.html' %}
+                        {% endfor %}
+                    </div>
+                    {% include 'orders/snippets/menu_cuenta.html' %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+

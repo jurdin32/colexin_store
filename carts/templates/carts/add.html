@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load cart_extras %}
+{% load product_extras %}
+
+{% block content %}
+
+
+    <div class="cart">
+        <div class="container">
+            <h1 class="h2 heading-primary mt-lg clearfix">
+                <span>{{ quantity | quantity_add_format }}  al carrito</span>
+            </h1>
+
+            <div class="row">
+                <div class="col-md-8 col-lg-9">
+                    <div class="cart-table-wrap">
+                        <table class="cart-table">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center" colspan="2">Imagen del Producto</th>
+                                <th>Producto</th>
+                                <th>Precio unidad</th>
+                                <th>Cantidad</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="product-image-td">
+                                    <a href="#" title="Product Name">
+                                        <img src="{{ product.image_a.url }}" alt="Imagen del producto">
+                                    </a>
+                                </td>
+                                <td class="product-image-td">
+                                    <a href="#" title="Product Name">
+                                        <img src="{{ product.image_b.url }}" alt="Imagen del producto">
+                                    </a>
+                                </td>
+                                <td class="product-name-td">
+                                    <h2 class="product-name"><a href="#" title="Product Name">{{ product.title }}</a>
+                                    </h2>
+                                </td>
+                                <td>{{ product.precio | price_format }}</td>
+                                <td>
+
+                                    <span class="text-primary">{{ quantity }}</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6" class="clearfix">
+                                    <a href="{% url 'index' %}" class="btn btn-default hover-primary btn-continue">Continuar comprando</a>
+                                    <a href="{% url 'carts:cart' %}" class="btn btn-primary pull-right">Ir a carrito de compras</a>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <aside class="col-md-3 sidebar shop-sidebar">
+                    <div class="owl-carousel owl-theme" data-plugin-options="{'items':1, 'margin': 5}">
+                        <a href="#">
+                            <img class="img-responsive" src="/static/img/demos/shop/banners/banner1-blue.jpg" alt="Banner">
+                        </a>
+                        <a href="#">
+                            <img class="img-responsive" src="/static/img/demos/shop/banners/banner2-blue.jpg" alt="Banner">
+                        </a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {##}
+    {#<script>#}
+    {##}
+    {#    const add =  document.getElementById('add')#}
+    {#    const remove = document.getElementById('remove')#}
+    {#    const  quantity= document.getElementById('quantity')#}
+    {##}
+    {#    add.addEventListener('click',function(){#}
+    {#        quantity.value= parseInt(quantity.value)+1#}
+    {#    })#}
+    {##}
+    {#    remove.addEventListener('click',function(){#}
+    {#        value= parseInt(quantity.value)#}
+    {#        if(value !=1){#}
+    {#            value = value -1#}
+    {#        }#}
+    {#        quantity.value=value#}
+    {#    })#}
+    {##}
+    {#</script>#}
+
+{% endblock %}
+

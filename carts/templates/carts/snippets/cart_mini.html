@@ -1,0 +1,35 @@
+<p>{{ forloop.counter }}</p>
+{% load product_extras %}
+<div class="cart-products">
+    {% if cart.products.exists %}
+        {% for cp in cart.products_releated %}
+            {% with product=cp.product %}
+                <div class="product product-sm">
+                    <a href="#" class="btn-remove" title="Remove Product">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <figure class="product-image-area">
+                        <a href="{% url 'product' product.slug %}" title="Product Name" class="product-image">
+                            <img src="{{ product.image_a.url }}" alt="Product Name">
+                        </a>
+                    </figure>
+                    <div class="product-details-area">
+                        <h2 class="product-name"><a href="{% url 'product' product.slug %}" title="Product Name">{{ product.title }}</a></h2>
+
+                        <div class="cart-qty-price">
+                            1 X
+                            <span class="product-price">{{ product.precio | price_format }}</span>
+                        </div>
+                    </div>
+                </div>
+
+            {% endwith %}
+        {% endfor%}
+    {% else %}
+        <p class="H3">Tu carrito de compras está vacio.</p>
+        <a href="{% url 'index' %}">seguir comprando</a>
+    {% endif %}
+
+
+
+</div>

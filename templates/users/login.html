@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="mobile-menu-overlay"></div>
+    <div role="main" class="main">
+        <section class="form-section">
+            <div class="container">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags == 'success'%} alert-success{%else%}alert-danger{% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">X</button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <h1 class="h2 heading-primary font-weight-normal mb-md mt-lg">Clientes Registrados</h1>
+                <div class="featured-box featured-box-primary featured-box-flat featured-box-text-left mt-md">
+                    <div class="box-content">
+
+                        <!-- Formulario -->
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+
+                                <div class="col-sm-6">
+                                    <div class="form-content">
+                                        <h3 class="heading-text-color font-weight-normal">Nuevos Clientes</h3>
+                                        <p>Al crear una cuenta en nuestra tienda, podrá pasar por el proceso de pago más rápido, almacenar múltiples direcciones de envío, ver y rastrear sus pedidos en su cuenta y más</p>
+                                    </div>
+
+                                    <div class="form-action clearfix">
+                                        <a href="{% url  'register'%}" class="btn btn-primary">Crear cuenta</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-content">
+                                        <h3 class="heading-text-color font-weight-normal">Clientes Registrados</h3>
+                                        <p>Si tiene una cuenta con nosotros, inicie sesión.</p>
+
+                                        <div class="form-group">
+                                            <label for="username" class="font-weight-normal">Usuario <span class="required">*</span></label>
+                                            <input type="text" name="username" placeholder="Nombre de Usuario" class="form-control" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="password" class="font-weight-normal">Contraseña <span class="required">*</span></label>
+                                            <input type="password"  name="password" class="form-control" required>
+                                        </div>
+
+                                        <p class="required">* Campos requeridos</p>
+                                    </div>
+
+                                    <div class="form-action clearfix">
+                                        <a href="/" class="pull-left">¿Olvidaste tu contraseña?</a>
+                                        <input type="submit" class="btn btn-primary" value="Entrar">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- end Formulario -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+

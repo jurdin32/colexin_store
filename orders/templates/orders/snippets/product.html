@@ -1,0 +1,32 @@
+{% load product_extras %}
+
+    <tbody>
+        <tr>
+            <td class="product-action-td">
+            </td>
+            <td class="product-image-td">
+                <a href="{% url 'product' product.slug %}" title="Product Name">
+                    <img src="{{ product.image_a.url }}" alt="Imagen del producto" width="50" height="50" >
+                </a>
+            </td>
+            <td class="product-image-td">
+                <a href="{% url 'product' product.slug %}" title="Product Name">
+                    <img src="{{ product.image_b.url }}" alt="Imagen del producto" width="50" height="50" >
+                </a>
+            </td>
+            <td class="product-name-td">
+                <h2 class="product-name"><a href="{% url 'product' product.slug %}" title="Product Name"><strong>{{ product.title }} - {{ product.metal }}</strong></a></h2>
+                <p >{{ product.precio | price_format }}</p>
+            </td>
+            <td>
+            </td>
+
+            <td>
+
+            </td>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+
+

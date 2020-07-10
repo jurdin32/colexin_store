@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content%}
+
+    <section class="page-header">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Inicio</a></li>
+                <li class="active"><a href="/biblioteca/">Biblioteca</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-10 col-md-push-2">
+
+                <div class="col-md-12">
+{#                    <h2 style="text-align: center">{{ denominacion.periodo }}</h2>#}
+{#                    <h1>{{ denominacion.denominacion.periodo }} hola</h1>#}
+{#                    <div class="owl-carousel owl-theme" data-plugin-options="{'items': 6, 'autoplay': true, 'autoplayTimeout': 5000}">#}
+{#                        {% for deno in denominacion %}#}
+{#                                  {% if denominacion == peri %}#}
+{#                                        <figure class="product-image-area">#}
+{#                                            <a href="/periodo/{{ deno.id }}/" title="Product Name" class="product-image">#}
+{#                                                <img src="/media/{{ deno.image_a }}" alt="Product Name">#}
+{##}
+{#                                            </a>#}
+{#                                            <h4 style="text-align: center">{{ deno.denominacion }}</h4>#}
+{#                                        </figure>#}
+{##}
+{#                                    {% endif %}#}
+{#                        {% endfor %}#}
+{##}
+{##}
+{#                                {% for sis in sistema %}#}
+{#                                    {% if denominacion == peri %}#}
+{#                                        <h8 style="padding-left: 25px">{{ sis.denomina.denominacion }}</h8>#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{#                    #}
+{#                            <div class="product">#}
+{#                                <figure class="product-image-area">#}
+{#                                    <a href="" title="Product Name" class="product-image">#}
+{#                                        <img src="/media/{{ pro.image_a }}" alt="Product Name">#}
+{#                                        <img src="/media/{{ pro.image_b }}"  alt="Product Name" class="product-hover-image">#}
+{#                                    </a>#}
+{#                                    <h2 style="text-align: center">gregerg</h2>#}
+{#                                </figure>#}
+{#                            </div>#}
+{#                    </div>#}
+
+
+{#                    <h1 style="text-align: center">Perú>República del Perú|1991 - 2020</h1>#}
+
+                    {% for deno in denominacion %}
+                        <div class="col-md-12">
+                            <hr>
+                            <div class="col-md-3">
+                                <img class="img-responsive img-rounded mb-lg" src="/media/{{ deno.image_a }}" alt="Project Image">
+                            </div>
+                            <div class="col-md-3">
+                                <img class="img-responsive img-rounded mb-lg" src="/media/{{ deno.image_b }}" alt="Project Image">
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="col-md-12">
+                                    <h1 style="text-align: center">{{ deno.denominacion }} </h1>
+                                    <div>
+                                        <div class="col-md-6">
+                                            <p>Peso: {{ deno.peso }}</p>
+                                            <p>Metal: {{deno.metal}}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Motivo: {{ deno.motivo }}</p>
+                                            <p>Peso: {{ deno.peso }}></p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p style="text-align: justify">{{ deno.nota }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% include 'menu_biblioteca.html' %}
+        </div>
+    </div>
+
+
+{% endblock %}

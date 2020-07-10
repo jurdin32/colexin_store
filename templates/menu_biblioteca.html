@@ -1,0 +1,90 @@
+
+<aside class="col-md-3 col-md-pull-9 sidebar shop-sidebar">
+    {% for conti in contine %}
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+
+                        <a class="accordion-toggle" data-toggle="collapse" href="#{{ conti.continente }}">
+                            {{ conti.continente }}
+                        </a>
+                    </h4>
+                </div>
+                <div id="{{ conti.continente }}" class="accordion-body collapse  ">
+                    <div class="panel-body">
+                        <ul>
+                            {% for pai in pa %}
+                                {% if pai.continente == conti %}
+                                    <div class="toggle toggle-primary toggle-simple" data-plugin-toggle>
+                                        <section class="toggle ">
+                                            <label><a href="/biblioteca/{{ pai.pais }}/"> {{ pai.pais }}</label>
+                                            <div class="toggle-content">
+                                                <div class="toggle-content">
+                                                    {% for peri in peri %}
+                                                        {% if peri.pais == pai %}
+                                                            <a  href="/biblioteca/{{ pai.pais }}/{{ peri.periodo }}">
+                                                                <h8 style="padding-left: 25px">{{ peri.periodo }}</h8>
+                                                                <p style=" padding-left: 25px ; margin-top: -5px "> {{ peri.anio_inicio }} - {{ peri.anio_fin }}</p>
+                                                            </a>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</aside>
+
+
+
+{#<aside class="col-md-3 col-md-pull-9 sidebar shop-sidebar">#}
+{#    {% for conti in continente %}#}
+{#        <div class="panel-group">#}
+{#            <div class="panel panel-default">#}
+{#                <div class="panel-heading">#}
+{#                    <h4 class="panel-title">#}
+{##}
+{#                        <a class="accordion-toggle" data-toggle="collapse" href="#{{ conti.continente }}">#}
+{#                            {{ conti.continente }}#}
+{#                        </a>#}
+{#                    </h4>#}
+{#                </div>#}
+{#                <div id="{{ conti.continente }}" class="accordion-body collapse  ">#}
+{#                    <div class="panel-body">#}
+{#                        <ul>#}
+{#                            {% for pai in pais %}#}
+{#                                {% if pai.continente == conti %}#}
+{#                                    <div class="toggle toggle-primary toggle-simple" data-plugin-toggle>#}
+{#                                        <section class="toggle ">#}
+{#                                            <label><a href="/biblioteca/{{ pai.pais }}/"> {{ pai.pais }}</label>#}
+{#                                            <div class="toggle-content">#}
+{#                                                <div class="toggle-content">#}
+{#                                                    {% for peri in periodo %}#}
+{#                                                        {% if peri.pais == pai %}#}
+{#                                                            <a  href="/periodo/{{ peri.id }}">#}
+{#                                                                <h8 style="padding-left: 25px">{{ peri.periodo }}</h8>#}
+{#                                                                <p style=" padding-left: 25px ; margin-top: -5px "> {{ peri.anio_inicio }} - {{ peri.anio_fin }}</p>#}
+{#                                                            </a>#}
+{#                                                        {% endif %}#}
+{#                                                    {% endfor %}#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </section>#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#</aside>#}

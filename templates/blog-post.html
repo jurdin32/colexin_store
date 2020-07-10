@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load contador %}
+	<div role="main" class="main">
+        <section class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="breadcrumb">
+                            <li><a href="/">Home</a></li>
+                            <li class="active">Blog</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Artículos</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+
+            <div class="col-md-9">
+                <div class="blog-posts single-post">
+                    <article class="post post-large blog-single-post">
+                        <div class="post-image">
+                            <div class="owl-carousel owl-theme" data-plugin-options='{"items":1}'>
+                                <div>
+                                    <div style="text-align: center" class="img-thumbnail">
+                                        <img  class="img-responsive" src="/media/{{ blogg.imagen }}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-content">
+
+                            <h2>{{ blogg.titulo }}</h2>
+
+                            <span><i class="fa fa-calendar"></i> {{ blogg.fecha }} </span>
+                            <span><i class="fa fa-user"></i> Autor: {{ blogg.autor }} </span>
+                            <span><i class="fa fa-eye"></i> Visitas: {% vistanumero blogg.id %} </span>
+                        </div>
+
+                            <p style="text-align: justify;"> {{ blogg.articulo|safe|linebreaksbr }}</p>
+
+                            {% if blogg.tipo_archivo == 'imagen' %}
+                                <img class="img-responsive" src="/media/{{ blogg.media }}" alt="">
+                            {% else %}
+                                <iframe width="100%" height="100%"  src="https://www.youtube.com/embed/{{ blogg.tipo_video_link }}?showinfo=0&rel=0&theme=light&modestbranding=1&frameborder=0"
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                </iframe>
+                            {% endif %}
+
+                            <a href="/blog/" class="btn btn-primary btn-icon"><i class="fa fa-external-link"></i>Volver</a>
+
+                            <div class="post-block post-share">
+                                <h3 class="heading-primary"><i class="fa fa-share"></i>Compartir este post</h3>
+                                <!-- AddThis Button BEGIN -->
+                                <div class="addthis_toolbox addthis_default_style ">
+                                    <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                                    <a class="addthis_button_tweet"></a>
+                                    <a class="addthis_button_pinterest_pinit"></a>
+                                    <a class="addthis_counter addthis_pill_style"></a>
+                                </div>
+                                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50faf75173aadc53"></script>
+                                <!-- AddThis Button END -->
+                            </div>
+                    </article>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+            <aside class="sidebar">
+
+
+                <div class="tabs mb-xlg">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> Populares</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="popularPosts">
+                                <ul class="simple-post-list">
+                                    {% for blog in blog %}
+                                        <li>
+                                            <div class="post-image">
+                                                <div class="img-thumbnail">
+                                                    <a href="/post/{{ blog.id }}">
+                                                        <img src="/media/{{ blog.imagen }}" style="width: 70px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-info">
+                                                <a href="/post/{{ blog.id }}">{{ blog.titulo }}</a>
+                                                <div class="post-meta">
+                                                     {{ blog.fecha_publicacion }}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="recentPosts">
+                                <ul class="simple-post-list">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                <hr>
+
+                <h4 class="heading-primary">Aviso</h4>
+                <p style="text-align: justify">Aquí las preguntas más frecuentes que han echo nuestros clientes.</p>
+            </aside>
+        </div>
+    </div>
+{% endblock %}

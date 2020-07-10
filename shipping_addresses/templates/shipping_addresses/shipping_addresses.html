@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="cart">
+        <div class="container">
+            <div class="row">
+                <div role="main" class="main">
+                    <br>
+                    <div class="col-md-9 col-md-push-3 my-account">
+                        <div class="h2 heading-primary mt-lg clearfix">
+                            Mis direcciones
+                        </div>
+                        <div class="box-content">
+                            <div class="panel-box">
+                                <a href="{% url 'shipping_addresses:create' %}">Agregar nueva dirección</a>
+                                <br>
+                                <div class="mt-2">
+                                    <br>
+                                    {% for shipping_address in object_list %}
+                                        {% include 'shipping_addresses/snippets/shipping_address.html' with edit=True %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% include 'orders/snippets/menu_cuenta.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

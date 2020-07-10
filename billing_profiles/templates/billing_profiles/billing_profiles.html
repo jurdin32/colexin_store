@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="cart">
+        <div class="container">
+            <div class="row">
+                <div role="main" class="main">
+                    <br>
+                    <div class="col-md-9 col-md-push-3 my-account">
+                        <div class="h2 heading-primary mt-lg clearfix">
+                            Métodos de pagos
+                        </div>
+                        <div class="">
+                            <a href="{% url 'billing_profiles:create' %}">Nuevo método de pago </a>
+                        </div>
+                        <br>
+                        <div class="">
+                            {% for billing_profile in  object_list %}
+                                {% include 'billing_profiles/snippets/billing_profile.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <br>
+
+                    {% include 'orders/snippets/menu_cuenta.html' %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,283 @@
+{% url 'login' as login %}
+{% url 'register' as register %}
+{% url 'carts:cart' as cart %}
+{% url 'shipping_addresses:shipping_addresses' as shipping_addresses %}
+{% url 'orders:completeds' as completeds  %}
+{% url 'billing_profiles:billing_profiles' as billing_profiles  %}
+{% load product_extras %}
+<header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 147, 'stickySetTop': '-147px', 'stickyChangeLogo': false}">
+        <div class="header-body">
+            <div class="header-top">
+                <div class="container">
+
+                    <div class="top-menu-area">
+                        <a href="#">Links <i class="fa fa-caret-down"></i></a>
+                        <ul class="top-menu">
+                            <li >
+                                <a href="{{ cart }}">
+                                    {% if request.path == cart %}
+                                        <u> Carrito</u> &nbsp;
+                                        <i  style="color: #ffffff" class="fa fa-shopping-cart"></i>
+                                    {% else %}
+                                        Carrito&nbsp;
+                                        <i  style="color: #ffffff" class="fa fa-shopping-cart"></i>
+                                    {% endif %}
+                                </a>
+                            </li>
+
+                            {% if user.is_authenticated %}
+                                <li>
+                                    <a class="nav-links" href="{% url 'shipping_addresses:shipping_addresses' %}">
+                                        {% if request.path == shipping_addresses %}
+                                            <u> Mis Direcciones &nbsp; </u> &nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-location-arrow"></i>
+                                        {% else %}
+                                           Mis Direcciones &nbsp;&nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-location-arrow"></i>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-links" href="{% url 'orders:completeds' %}">
+                                        {% if request.path == completeds %}
+                                            <u> Mis Pedidos &nbsp;</u> &nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-truck"></i>
+                                        {% else %}
+                                           Mis Pedidos &nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-truck"></i>
+                                        {% endif %}
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="nav-links" href="{% url 'billing_profiles:billing_profiles' %}">
+                                        {% if request.path == billing_profiles %}
+                                            <u> Mis métodos de pago &nbsp;</u> &nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-credit-card-alt"></i>
+                                        {% else %}
+                                            Mis métodos de pago &nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-credit-card-alt"></i>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                            {% endif %}
+
+
+                            {% if user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'logout' %}">
+                                        Logout &nbsp;
+                                        <i  style="color: #ffffff" class="fa fa-sign-out"></i>
+                                    </a>
+                                </li>
+
+                            {% else %}
+
+                                <li>
+                                    <a href="{{ login }}">
+                                        {% if request.path == login %}
+                                            <u> Login</u> &nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-user"></i>
+                                        {% else %}
+                                            Login&nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-user"></i>
+                                        {% endif %}
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ register }}">
+                                        {% if request.path == register %}
+                                            <u> Registro</u> &nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-user-plus"> </i>
+                                        {% else %}
+                                            Registro &nbsp;
+                                            <i  style="color: #ffffff" class="fa fa-user-plus"></i>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            <li>
+                                <a class="nav-links" href="{% url 'carts:cart' %}">
+                                    {% if request.path == cart %}
+                                        <u> Carrito</u> &nbsp;
+                                        <i  style="color: #ffffff" class="fa fa-shopping-cart"></i>
+                                    {% else %}Carrito &nbsp;
+                                        <i  style="color: #ffffff" class="fa fa-shopping-cart">  </i>
+                                    {% endif %}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/usuario/">Usuario &nbsp; <i  style="color: #ffffff" class="fa fa-user"></i></a></li>
+
+                        </ul>
+                    </div>
+                    <p class="welcome-msg">Bienvenido!</p>
+                </div>
+            </div>
+            <div class="header-container container">
+                <div class="header-row">
+                    <div class="header-column">
+                        <div class="header-logo">
+                            <a href="/">
+                                <img alt="Colexin" width="165" height="51" src="/media/{{ colexin.logo_color }}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="header-column">
+                        <div class="row">
+                            <div class="cart-area">
+
+                                <div class="cart-dropdown">
+                                    <a href="#" class="cart-dropdown-icon">
+                                        <i class="minicart-icon"></i>
+                                        <span class="cart-info">
+                                            <span class="cart-qty">{{ forloop.counter }}</span>
+                                            <span class="cart-text">item(s)</span>
+                                        </span>
+                                    </a>
+
+                                    <div class="cart-dropdownmenu right">
+                                        <div class="dropdownmenu-wrapper">
+
+                                            <div class="cart-products">
+                                                {% include 'carts/snippets/cart_mini.html' %}
+                                            </div>
+
+                                            <div class="cart-totals">
+                                                Total: <span>$104.00</span>
+                                            </div>
+
+                                            <div class="cart-actions">
+                                                <a href="demo-shop-8-cart.html" class="btn btn-primary">View Cart</a>
+                                                <a href="demo-shop-8-checkout.html" class="btn btn-primary">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% include 'products/snippets/search.html' %}
+
+                            <a href="#" class="mmenu-toggle-btn" title="Toggle menu">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-container header-nav">
+                <div class="container">
+                    <div class="header-nav-main">
+                        <nav>
+                            <ul class="nav nav-pills" id="mainNav">
+                                <li >
+                                    <a href="/">
+                                        Inicio<span class="tip tip-new">New</span>
+                                    </a>
+                                </li>
+
+
+                                <li class="dropdown ">
+                                    <a class="dropdown-toggle" href="/">
+                                        Monedas
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="/biblioteca/">Biblioteca <span class="tip tip-new">Nuevo!</span></a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="/venta/">Venta <span class="tip tip-hot">Hot!</span></a>
+                                        </li>
+                                        <li class="drop">
+                                            <a href="/periodo/">Periodo<span class="tip tip-hot">Hot!</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown ">
+                                    <a class="dropdown-toggle" href="demo-shop-7.html">
+                                        Billetes
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="demo-shop-1.html">Venta <span class="tip tip-hot">Hot!</span></a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="demo-shop-1.html">Subasta <span class="tip tip-hot">Hot!</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown ">
+                                    <a class="dropdown-toggle" href="demo-shop-7.html">
+                                        Sellos
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="demo-shop-1.html">Venta <span class="tip tip-hot">Hot!</span></a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="demo-shop-1.html">Subasta <span class="tip tip-hot">Hot!</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li >
+                                    <a href="/blog/">
+                                        Blog
+                                    </a>
+                                </li>
+
+                                <li >
+                                    <a href="/perfil/">
+                                        Perfiles
+                                    </a>
+                                </li>
+
+                                <li class="pull-right">
+                                    <a href="/contacto/">
+                                        CONTÁCTENOS
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav">
+        <div class="mobile-nav-wrapper">
+            <ul class="mobile-side-menu">
+                <li><a href="/">Home</a></li>
+                <li >
+                    <a href="/biblioteca/">
+                        Biblioteca <span class="tip tip-hot">Monedas</span>
+                    </a>
+                </li>
+                <li>
+                    <span class="mmenu-toggle"></span>
+                    <a href="#">Monedas <span class="tip tip-new">New</span></a>
+                    <ul>
+                        <li>
+                            <span class="mmenu-toggle"></span>
+                            <a href="#">Paises</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Tops &amp; Blouses</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="/">Loging</a></li>
+                <li><a href="/">Logout</a></li>
+                <li><a href="/">Registrarse</a></li>
+            </ul>
+        </div>
+    </div>
+

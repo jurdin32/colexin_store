@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load product_extras %}
+
+{% block breadcrumb %}
+  {% include 'orders/snippets/breadcrumb.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="cart">
+        <div class="container">
+            <div class="h2 heading-primary mt-lg clearfix">
+                Revisa tu pedido
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-9">
+                    <div class="cart-table-wrap">
+                        <table class="cart-table">
+                            {% for product in cart.products.all %}
+                                {% include 'orders/snippets/product.html' %}
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <aside class="col-md-4 col-lg-3 sidebar shop-sidebar">
+                    {% url 'orders:address' as next_url %}
+                    {% include 'orders/snippets/resume.html' with next_url=next_url %}
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock %}
